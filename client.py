@@ -118,7 +118,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 #     data = new_data.encode()
                 #     f.write(data)
                 
-                
                 file_size_bytes = secure_sock.recv(4)
                 file_size = int.from_bytes(file_size_bytes, byteorder='big')
 
