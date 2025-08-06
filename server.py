@@ -33,7 +33,15 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 if operation == "upload":
                     
                     while True:
-                        file_name = conn.recv(1024).decode().strip()
+                        # file_name = conn.recv(1024).decode().strip()
+                        file_name = ""
+                        while True:
+                            char = conn.recv(1).decode()
+                            if char == "\n":
+                                break
+                            file_name += char
+                        file_name = file_name.strip()
+                        
                         
                         if not file_name.strip():
                             conn.sendall(b"illegal")
