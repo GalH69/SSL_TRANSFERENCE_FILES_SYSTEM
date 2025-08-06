@@ -49,17 +49,21 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
                     
                     
-                    buffer = b""
-                    with open(file_name, "wb") as rf:
-                        while True:
-                            chunk = secure_sock.recv(1024)
-                            if not chunk:
-                                break
-                            buffer += chunk
-                            if b"__END__\n" in buffer:
-                                parts = buffer.split(b"__END__\n", 1)
-                                rf.write(parts[0])
-                                break
+                    # buffer = b""
+                    # with open(file_name, "wb") as rf:
+                    #     while True:
+                    #         chunk = secure_sock.recv(1024)
+                    #         if not chunk:
+                    #             break
+                    #         buffer += chunk
+                    #         if b"__END__\n" in buffer:
+                    #             parts = buffer.split(b"__END__\n", 1)
+                    #             rf.write(parts[0])
+                    #             break
+                    
+                    
+                    feedback = secure_sock.recv(1024).decode()
+                    print(feedback)
                     
                     
                     feedback = secure_sock.recv(1024).decode()
