@@ -24,6 +24,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 
                 file_name = input("enter file name: ")
                 folder_path = input("Enter the path of the folder where the file is located:    ")
+                print(f"[DEBUG] folder_path = {repr(folder_path)}") #בדיקה לראות את הנתיב
+                
                 full_path = os.path.join(folder_path, file_name)
                 
                 while  not os.path.isfile(full_path):
