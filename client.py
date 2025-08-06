@@ -130,10 +130,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         f.write(chunk)
                         received += len(chunk)
                 
-                
-                
-                
-                
                 print(secure_sock.recv(1024).decode())
                 
                 
