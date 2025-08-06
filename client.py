@@ -41,11 +41,25 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         secure_sock.sendall((file_name + "\n").encode())
                         feedback = secure_sock.recv(1024).decode()
                     
-                    with open(full_path, "rb") as f:
-                        data = f.read()
-                        secure_sock.sendall(data)
+                    # with open(full_path, "rb") as f:
+                    #     data = f.read()
+                    #     secure_sock.sendall(data)
                         
-                    secure_sock.sendall(b"__END__\n")
+                    # secure_sock.sendall(b"__END__\n")
+                    
+                    
+                    buffer = b""
+                    with open(target_file_name, "wb") as rf:
+                        while True:
+                            chunk = conn.recv(1024)
+                            if not chunk:
+                                break
+                            buffer += chunk
+                            if b"__END__\n" in buffer:
+                                parts = buffer.split(b"__END__\n", 1)
+                                rf.write(parts[0])
+                                break
+                    
                     
                     feedback = secure_sock.recv(1024).decode()
                     print(feedback)
