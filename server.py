@@ -33,7 +33,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 if operation == "upload":
                     
                     while True:
-                        # file_name = conn.recv(1024).decode().strip()
+                        
                         file_name = ""
                         while True:
                             char = conn.recv(1).decode()
