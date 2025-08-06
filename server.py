@@ -28,7 +28,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             print(f"Got connection from {addr}\nthe connection is using TLS")
             
             while True:
-                operation = conn.recv(1024).decode()
+                operation = conn.recv(1024).decode().strip()
                 
                 if operation == "upload":
                     
