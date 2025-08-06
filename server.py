@@ -14,7 +14,7 @@ key_pem = os.path.join(base_dir, "key.pem")
 context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
 context.load_cert_chain(certfile=cert_pem, keyfile=key_pem)
 
-folder = os.path.join(base_dir, "files_of_server")
+folder = os.path.join(base_dir, "files_of_server_for_test")
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
