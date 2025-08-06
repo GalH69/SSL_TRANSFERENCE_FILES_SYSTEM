@@ -41,7 +41,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                             conn.sendall(b"Good name!")
                             break
                         
-                    target_file_name = f"received_{file_name}"
+                    target_file_name = os.path.join(folder, f"received_{file_name}")
                     with open(target_file_name, "wb") as rf:
                         # buffer = b""
                         # while True:
