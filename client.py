@@ -43,11 +43,25 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         secure_sock.sendall((file_name + "\n").encode())
                         feedback = secure_sock.recv(1024).decode()
                     
-                    with open(full_path, "rb") as f:
-                        data = f.read()
-                        file_size = len(data)
-                        secure_sock.sendall(file_size.to_bytes(4, byteorder='big'))
-                        secure_sock.sendall(data)
+                    # with open(full_path, "rb") as f:
+                    #     data = f.read()
+                    #     file_size = len(data)
+                    #     secure_sock.sendall(file_size.to_bytes(4, byteorder='big'))
+                    #     secure_sock.sendall(data)
+                    
+                    
+                    try:
+                        with open(full_path, "rb") as f:
+                            data = f.read()
+                    except Exception as e:
+                        print(f"[ERROR] Failed to open or read file: {e}")
+                        secure_sock.sendall((0).to_bytes(4, byteorder='big'))  # שלח לשרת אורך אפס
+                        continue  # תחזור לתפריט הראשי
+                    
+                    
+                    
+                    
+                    
                     
                     feedback = secure_sock.recv(1024).decode()
                     print(feedback)
