@@ -62,7 +62,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     files_str = "\n".join(files)
                     conn.sendall(files_str.encode())
                     
-                    file_name = conn.recv(1024).decode()
+                    file_name = conn.recv(1024).decode().strip()
                     file_path = os.path.join(folder, file_name)
                     
                     if not os.path.exists(file_path):
