@@ -57,13 +57,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         file_size = int.from_bytes(file_size_bytes, byteorder='big')
 
                         received = 0
-                        with open(target_file_name, "wb") as rf:
-                            while received < file_size:
-                                chunk = conn.recv(min(1024, file_size - received))
-                                if not chunk:
-                                    break
-                                rf.write(chunk)
-                                received += len(chunk)
+                        while received < file_size:
+                            chunk = conn.recv(min(1024, file_size - received))
+                            if not chunk:
+                                break
+                            rf.write(chunk)
+                            received += len(chunk)
                         
                         
                     
