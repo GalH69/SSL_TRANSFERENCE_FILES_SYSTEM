@@ -43,16 +43,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         
                     target_file_name = os.path.join(folder, f"received_{file_name}")
                     with open(target_file_name, "wb") as rf:
-                        # buffer = b""
-                        # while True:
-                        #     chunk = conn.recv(1024)
-                        #     if not chunk:
-                        #         break
-                        #     buffer += chunk
-                        #     if b"__END__\n" in buffer:
-                        #         parts = buffer.split(b"__END__\n", 1)
-                        #         rf.write(parts[0])
-                        #         break
+
                         file_size_bytes = conn.recv(4)
                         file_size = int.from_bytes(file_size_bytes, byteorder='big')
 
@@ -63,14 +54,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                                 break
                             rf.write(chunk)
                             received += len(chunk)
-                        
-                        
-                    
-                    # try:
-                    #     shutil.move(target_file_name, folder)
-                    #     conn.sendall(b"Success! the file was uploaded!\n")
-                    # except Exception as e:
-                    #     conn.sendall(b"Failed to move file\n")
                 
                 elif operation == "download":
                     conn.sendall(b"\npick a file for download from the following files:\n")
