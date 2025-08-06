@@ -41,11 +41,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         secure_sock.sendall((file_name + "\n").encode())
                         feedback = secure_sock.recv(1024).decode()
                     
-                    # with open(full_path, "rb") as f:
-                    #     data = f.read()
-                    #     secure_sock.sendall(data)
-                        
-                    # secure_sock.sendall(b"__END__\n")
+                    with open(full_path, "rb") as f:
+                        data = f.read()
+                        file_size = len(data)
+                        secure_sock.sendall(file_size.to_bytes(4, byteorder='big'))
+                        secure_sock.sendall(data)
+
                     
                     
                     buffer = b""
