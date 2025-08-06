@@ -66,11 +66,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         
                         
                     
-                    try:
-                        shutil.move(target_file_name, folder)
-                        conn.sendall(b"Success! the file was uploaded!\n")
-                    except Exception as e:
-                        conn.sendall(b"Failed to move file\n")
+                    # try:
+                    #     shutil.move(target_file_name, folder)
+                    #     conn.sendall(b"Success! the file was uploaded!\n")
+                    # except Exception as e:
+                    #     conn.sendall(b"Failed to move file\n")
                 
                 elif operation == "download":
                     conn.sendall(b"\npick a file for download from the following files:\n")
