@@ -117,6 +117,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 
                 file_size_bytes = secure_sock.recv(4)
                 file_size = int.from_bytes(file_size_bytes, byteorder='big')
+                
+                if file_size == 0:
+                    print("Server reports: file does not exist.")
+                    continue
 
                 received = 0
                 with open(full_path, "wb") as f:
