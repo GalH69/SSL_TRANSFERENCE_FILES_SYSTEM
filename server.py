@@ -49,11 +49,14 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                             conn.sendall(b"Good name!")
                             break
                         
-                    target_file_name = os.path.join(folder, f"received_{file_name}")
+                    base_name = f"received_{file_name}"
+                    target_file_name = os.path.join(folder, base_name)
                     i = 1
                     
                     while os.path.exists(target_file_name):
-                        
+                        base_name = f"received_{i}_{file_name}"
+                        target_file_name = os.path.join(folder,base_name)
+                        i += 1
                     
                     
                     with open(target_file_name, "wb") as rf:
