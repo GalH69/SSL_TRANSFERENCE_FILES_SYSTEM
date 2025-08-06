@@ -64,10 +64,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     
                     feedback = secure_sock.recv(1024).decode()
                     print(feedback)
-                    
-                    
-                    feedback = secure_sock.recv(1024).decode()
-                    print(feedback)
 
                 else:
                     print("you enter a file that does not exist\n")
