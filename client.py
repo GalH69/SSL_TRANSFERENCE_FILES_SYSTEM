@@ -35,7 +35,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 
                 if os.path.exists(full_path):
 
-                    secure_sock.sendall(file_name.strip().encode())
+                    secure_sock.sendall((file_name.strip() + "\n").encode())
                     feedback = secure_sock.recv(1024).decode()
                     
                     while feedback == "illegal":
