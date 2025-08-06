@@ -49,9 +49,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     
                     
                     buffer = b""
-                    with open(target_file_name, "wb") as rf:
+                    with open(file_name, "wb") as rf:
                         while True:
-                            chunk = conn.recv(1024)
+                            chunk = secure_sock.recv(1024)
                             if not chunk:
                                 break
                             buffer += chunk
