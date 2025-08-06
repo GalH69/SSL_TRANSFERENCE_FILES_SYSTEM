@@ -97,10 +97,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 
                 secure_sock.sendall(chosen_file_name.encode())
                 
-                first_response = secure_sock.recv(1024).decode()
-                if first_response.startswith("ERROR"):
-                    print(f"Server error: {first_response}")
-                    break  # תחזור לתחילת הלולאה
+
                 
                 
                 
