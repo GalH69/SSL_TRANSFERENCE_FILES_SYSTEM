@@ -64,7 +64,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         file_size_bytes = conn.recv(4)
                         file_size = int.from_bytes(file_size_bytes, byteorder='big')
 
-                        
+                        if file_size == 0:
+                            print("Client failed to send file or aborted upload.")
+                            conn.sendall(b"Upload failed on client side.\n")
+                            continue
 
 
                         received = 0
