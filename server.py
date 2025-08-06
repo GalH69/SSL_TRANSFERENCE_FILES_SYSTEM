@@ -89,13 +89,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     
                     
                     
-                    with open(file_path, "rb") as f:
-                        while True:
-                            chunk = f.read(1024)
-                            if not chunk:
-                                break
-                            conn.sendall(chunk)
-                    conn.sendall(b"__END__\n")
+                    # with open(file_path, "rb") as f:
+                    #     while True:
+                    #         chunk = f.read(1024)
+                    #         if not chunk:
+                    #             break
+                    #         conn.sendall(chunk)
+                    # conn.sendall(b"__END__\n")
                     conn.sendall(b"\nThe download was successful!\n")
                     
                 elif operation == "exit":
