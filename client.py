@@ -104,19 +104,36 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 
                 
                 
-                data_str = ""
-                while True:
-                    data = secure_sock.recv(1024).decode()
-                    data_str = data_str + data
+                # data_str = ""
+                # while True:
+                #     data = secure_sock.recv(1024).decode()
+                #     data_str = data_str + data
                 
-                    if "__END__\n" in data_str:
-                        new_data, _ = data_str.split("__END__\n")
-                        break
+                #     if "__END__\n" in data_str:
+                #         new_data, _ = data_str.split("__END__\n")
+                #         break
                 
                     
-                with open(full_path,"wb") as f:
-                    data = new_data.encode()
-                    f.write(data)
+                # with open(full_path,"wb") as f:
+                #     data = new_data.encode()
+                #     f.write(data)
+                
+                
+                file_size_bytes = secure_sock.recv(4)
+                file_size = int.from_bytes(file_size_bytes, byteorder='big')
+
+                received = 0
+                with open(full_path, "wb") as f:
+                    while received < file_size:
+                        chunk = secure_sock.recv(min(1024, file_size - received))
+                        if not chunk:
+                            break
+                        f.write(chunk)
+                        received += len(chunk)
+                
+                
+                
+                
                 
                 print(secure_sock.recv(1024).decode())
                 
