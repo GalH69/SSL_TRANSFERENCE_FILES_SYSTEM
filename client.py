@@ -93,7 +93,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     
                 dl_file_path = input("\nEnter location for the file:")
                 file_name = input(f"\nEnter name for the file\nNote: this is the name of the file you pick:   {chosen_file_name}\n")
-                full_path = f"{dl_file_path}\{file_name}"
+                full_path = os.path.join(dl_file_path, file_name)
                 
                 secure_sock.sendall(chosen_file_name.encode())
                 
