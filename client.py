@@ -38,6 +38,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     secure_sock.sendall(file_name.encode())
                     secure_sock.sendall(b"\n")
                     feedback = secure_sock.recv(1024).decode()
+                    
                     while feedback == "illegal":
                         file_name = input("Illegal name\nEnter file name:   ").strip()
                         secure_sock.sendall((file_name + "\n").encode())
