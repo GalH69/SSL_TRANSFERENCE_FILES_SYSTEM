@@ -56,7 +56,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     except Exception as e:
                         print(f"[ERROR] Failed to open or read file: {e}")
                         secure_sock.sendall((0).to_bytes(4, byteorder='big'))  # שלח לשרת אורך אפס
-                        continue  # תחזור לתפריט הראשי
+                        continue
                     
                     file_size = len(data)
                     secure_sock.sendall(file_size.to_bytes(4, byteorder='big'))
