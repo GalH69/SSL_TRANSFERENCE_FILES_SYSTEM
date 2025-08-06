@@ -46,21 +46,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         file_size = len(data)
                         secure_sock.sendall(file_size.to_bytes(4, byteorder='big'))
                         secure_sock.sendall(data)
-
-                    
-                    
-                    # buffer = b""
-                    # with open(file_name, "wb") as rf:
-                    #     while True:
-                    #         chunk = secure_sock.recv(1024)
-                    #         if not chunk:
-                    #             break
-                    #         buffer += chunk
-                    #         if b"__END__\n" in buffer:
-                    #             parts = buffer.split(b"__END__\n", 1)
-                    #             rf.write(parts[0])
-                    #             break
-                    
                     
                     feedback = secure_sock.recv(1024).decode()
                     print(feedback)
@@ -97,23 +82,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 
                 secure_sock.sendall(chosen_file_name.encode())
                 
-
-                
-                
-                
-                # data_str = ""
-                # while True:
-                #     data = secure_sock.recv(1024).decode()
-                #     data_str = data_str + data
-                
-                #     if "__END__\n" in data_str:
-                #         new_data, _ = data_str.split("__END__\n")
-                #         break
-                
-                    
-                # with open(full_path,"wb") as f:
-                #     data = new_data.encode()
-                #     f.write(data)
                 
                 file_size_bytes = secure_sock.recv(4)
                 file_size = int.from_bytes(file_size_bytes, byteorder='big')
