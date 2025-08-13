@@ -74,24 +74,41 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         i += 1
                     
                     
+                    # with open(target_file_name, "wb") as rf:
+
+                    #     file_size_bytes = conn.recv(4)
+                    #     file_size = int.from_bytes(file_size_bytes, byteorder='big')
+
+                    #     if file_size == 0:
+                    #         print("Client failed to send file or aborted upload.")
+                    #         conn.sendall(b"Upload failed on client side.\n")
+                    #         continue
+
+
+                    #     received = 0
+                    #     while received < file_size:
+                    #         chunk = conn.recv(min(1024, file_size - received))
+                    #         if not chunk:
+                    #             break
+                    #         rf.write(chunk)
+                    #         received += len(chunk)
+                    
+                    
+                    file_data = recv_with_length(conn)
+
+                    if not file_data:
+                        print("Client failed to send file or aborted upload.")
+                        send_with_length(conn, b"Upload failed on client side.\n")
+                        continue
+
                     with open(target_file_name, "wb") as rf:
+                        rf.write(file_data)
 
-                        file_size_bytes = conn.recv(4)
-                        file_size = int.from_bytes(file_size_bytes, byteorder='big')
-
-                        if file_size == 0:
-                            print("Client failed to send file or aborted upload.")
-                            conn.sendall(b"Upload failed on client side.\n")
-                            continue
-
-
-                        received = 0
-                        while received < file_size:
-                            chunk = conn.recv(min(1024, file_size - received))
-                            if not chunk:
-                                break
-                            rf.write(chunk)
-                            received += len(chunk)
+                    send_with_length(conn, b"Upload completed successfully!\n")
+                    
+                    
+                    
+                    
                     conn.sendall(b"Upload completed successfully!\n")
                 
                 elif operation == "download":
