@@ -114,11 +114,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     conn.sendall(file_size.to_bytes(4, byteorder='big'))
                     
                     with open(file_path, "rb") as f:
-                        while True:
-                            chunk = f.read(1024)
-                            if not chunk:
-                                break
-                            conn.sendall(chunk)
+                        file_data = f.read()
+                    send_with_length(conn, file_data)
+                    
                     conn.sendall(b"\nThe download was successful!\n")
                     
                 elif operation == "exit":
