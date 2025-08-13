@@ -67,10 +67,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 
                 
                 
-                # feedback = secure_sock.recv(1024).decode()
-                # print(feedback)
-                # files_str = secure_sock.recv(1024).decode()
-
+                feedback = secure_sock.recv(1024).decode()
+                print(feedback)
                 
                 length_bytes = secure_sock.recv(4)
                 length = int.from_bytes(length_bytes, byteorder= 'big')
