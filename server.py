@@ -77,6 +77,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                                 break
                             rf.write(chunk)
                             received += len(chunk)
+                    conn.sendall(b"Upload completed successfully!\n")
                 
                 elif operation == "download":
                     conn.sendall(b"\npick a file for download from the following files:\n")
