@@ -109,10 +109,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         conn.sendall((0).to_bytes(4, byteorder='big'))
                         continue
                     
-                    
-                    file_size = os.path.getsize(file_path)
-                    conn.sendall(file_size.to_bytes(4, byteorder='big'))
-                    
                     with open(file_path, "rb") as f:
                         file_data = f.read()
                     send_with_length(conn, file_data)
