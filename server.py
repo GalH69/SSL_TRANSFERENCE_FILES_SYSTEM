@@ -3,6 +3,21 @@ import shutil
 import os
 import ssl
 
+def send_with_length(sock, data_bytes):
+    sock.sendall(len(data_bytes).to_bytes(4, byteorder='big'))
+    sock.sendall(data_bytes)
+
+def recv_with_length(sock):
+    length_bytes = sock.recv(4)
+    length = int.from_bytes(length_bytes, byteorder='big')
+    received = b""
+    while len(received) < length:
+        chunk = sock.recv(min(1024, length - len(received)))
+        if not chunk:
+            break
+        received += chunk
+    return received
+
 HOST = "0.0.0.0"
 PORT = 65432
 
