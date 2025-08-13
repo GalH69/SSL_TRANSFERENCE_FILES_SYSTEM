@@ -61,14 +61,14 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                             data = f.read()
                     except Exception as e:
                         print(f"[ERROR] Failed to open or read file: {e}")
-                        secure_sock.sendall((0).to_bytes(4, byteorder='big'))  # שלח לשרת אורך אפס
-                        feedback = secure_sock.recv(1024).decode()
+                        secure_sock.sendall((0).to_bytes(4, byteorder='big'))
+                        feedback = recv_with_length(secure_sock).decode()
                         print(feedback)
                         continue
                     
                     send_with_length(secure_sock, data)
                     
-                    feedback = secure_sock.recv(1024).decode()
+                    feedback = recv_with_length(secure_sock).decode()
                     print(feedback)
 
                 else:
