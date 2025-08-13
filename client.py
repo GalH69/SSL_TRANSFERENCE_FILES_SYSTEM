@@ -72,7 +72,14 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 # files_str = secure_sock.recv(1024).decode()
                 # files_lst = files_str.split("\n")
                 
-                
+                length_bytes = secure_sock.recv(4)
+                length = int.from_bytes(length_bytes, byteorder= 'big')
+                files_str = b""
+                while len(files_str) < length:
+                    chunk = secure_sock.recv(min(1024, length - len(files_str)))
+                    if not chunk:
+                        break
+                    files_str += chunk
                 
                 
                 
