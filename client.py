@@ -67,11 +67,14 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 
                 
                 
-                feedback = secure_sock.recv(1024).decode()
-                print(feedback)
+                # feedback = secure_sock.recv(1024).decode()
+                # print(feedback)
+                # files_str = secure_sock.recv(1024).decode()
+                # files_lst = files_str.split("\n")
                 
-                files_str = secure_sock.recv(1024).decode()
-                files_lst = files_str.split("\n")
+                
+                
+                
                 
                 print(f"{files_str}\n")
                 
