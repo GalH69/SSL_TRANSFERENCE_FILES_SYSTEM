@@ -1,5 +1,4 @@
 import socket
-import shutil
 import os
 import ssl
 
@@ -72,26 +71,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         base_name = f"received_{i}_{file_name}"
                         target_file_name = os.path.join(folder,base_name)
                         i += 1
-                    
-                    
-                    # with open(target_file_name, "wb") as rf:
-
-                    #     file_size_bytes = conn.recv(4)
-                    #     file_size = int.from_bytes(file_size_bytes, byteorder='big')
-
-                    #     if file_size == 0:
-                    #         print("Client failed to send file or aborted upload.")
-                    #         conn.sendall(b"Upload failed on client side.\n")
-                    #         continue
-
-
-                    #     received = 0
-                    #     while received < file_size:
-                    #         chunk = conn.recv(min(1024, file_size - received))
-                    #         if not chunk:
-                    #             break
-                    #         rf.write(chunk)
-                    #         received += len(chunk)
                     
                     
                     file_data = recv_with_length(conn)
