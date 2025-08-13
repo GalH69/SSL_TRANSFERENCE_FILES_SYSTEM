@@ -99,9 +99,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     conn.sendall(b"\npick a file for download from the following files:\n")
                     files = os.listdir(folder)
                     files_str = "\n".join(files)
-                    files_encoded = files_str.encode()
-                    conn.sendall(len(files_encoded).to_bytes(4, byteorder='big'))
-                    conn.sendall(files_encoded)
+                    send_with_length(conn, files_str.encode())
                     
                     
                     file_name = conn.recv(1024).decode().strip()
