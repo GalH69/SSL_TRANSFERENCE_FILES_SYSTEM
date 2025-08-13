@@ -106,7 +106,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     file_path = os.path.join(folder, file_name)
                     
                     if not os.path.exists(file_path):
-                        conn.sendall((0).to_bytes(4, byteorder='big'))
+                        send_with_length(conn, b"")
                         continue
                     
                     with open(file_path, "rb") as f:
