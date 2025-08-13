@@ -86,9 +86,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     # conn.sendall(files_str.encode())
                     
                     files_str = "\n".join(files)
-                    encoded = files_str.encode()
-                    conn.sendall(len(encoded).to_bytes(4, byteorder='big'))
-                    conn.sendall(encoded)
+                    files_encoded = files_str.encode()
+                    conn.sendall(len(files_encoded).to_bytes(4, byteorder='big'))
+                    conn.sendall(files_encoded)
                     
                     
                     file_name = conn.recv(1024).decode().strip()
