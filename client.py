@@ -70,7 +70,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 # feedback = secure_sock.recv(1024).decode()
                 # print(feedback)
                 # files_str = secure_sock.recv(1024).decode()
-                # files_lst = files_str.split("\n")
+
                 
                 length_bytes = secure_sock.recv(4)
                 length = int.from_bytes(length_bytes, byteorder= 'big')
@@ -82,7 +82,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     files_str += chunk
                 files_str = files_str.decode()
                 
-                
+                files_lst = files_str.split("\n")
                 
                 print(f"{files_str}\n")
                 
