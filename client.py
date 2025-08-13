@@ -37,7 +37,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             if operation == "upload":
                 secure_sock.sendall(b"upload")
                 
-                file_name = input("Enter file name, make sure to include the file extension: ")
+                file_name = input("Enter file name of the file you want to upload, make sure to include the file extension: ")
                 folder_path = input("Enter the path of the folder where the file is located:    ")                
                 full_path = os.path.join(folder_path, file_name)
                 
