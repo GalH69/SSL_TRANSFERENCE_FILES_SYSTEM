@@ -66,9 +66,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         print(feedback)
                         continue
                     
-                    file_size = len(data)
-                    secure_sock.sendall(file_size.to_bytes(4, byteorder='big'))
-                    secure_sock.sendall(data)
+                    send_with_length(secure_sock, data)
                     
                     
                     feedback = secure_sock.recv(1024).decode()
