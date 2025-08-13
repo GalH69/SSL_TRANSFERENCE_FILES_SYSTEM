@@ -65,6 +65,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             elif operation == "download":
                 secure_sock.sendall(b"download")
                 
+                
+                
                 feedback = secure_sock.recv(1024).decode()
                 print(feedback)
                 
