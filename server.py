@@ -105,10 +105,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         rf.write(file_data)
 
                     send_with_length(conn, b"Upload completed successfully!\n")
-                    
-                    
-                    
-                    conn.sendall(b"Upload completed successfully!\n")
                 
                 elif operation == "download":
                     
