@@ -135,7 +135,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 with open(full_path, "wb") as f:
                     f.write(file_data)
                 
-                print(secure_sock.recv(1024).decode())
+                print(recv_with_length(secure_sock).decode())
                 
                 
             elif operation == "exit":
