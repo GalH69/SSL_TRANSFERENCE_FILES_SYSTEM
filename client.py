@@ -80,6 +80,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     if not chunk:
                         break
                     files_str += chunk
+                files_str = files_str.decode()
                 
                 
                 
