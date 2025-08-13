@@ -108,7 +108,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     
                     
                     
-                    
                     conn.sendall(b"Upload completed successfully!\n")
                 
                 elif operation == "download":
