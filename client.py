@@ -22,7 +22,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             if operation == "upload":
                 secure_sock.sendall(b"upload")
                 
-                file_name = input("enter file name: ")
+                file_name = input("enter file name, you need to : ")
                 folder_path = input("Enter the path of the folder where the file is located:    ")                
                 full_path = os.path.join(folder_path, file_name)
                 
