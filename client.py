@@ -110,21 +110,30 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 secure_sock.sendall(chosen_file_name.encode())
                 
                 
-                file_size_bytes = secure_sock.recv(4)
-                file_size = int.from_bytes(file_size_bytes, byteorder='big')
+                # file_size_bytes = secure_sock.recv(4)
+                # file_size = int.from_bytes(file_size_bytes, byteorder='big')
                 
-                if file_size == 0:
+                # if file_size == 0:
+                #     print("Server reports: file does not exist.")
+                #     continue
+
+                # received = 0
+                # with open(full_path, "wb") as f:
+                #     while received < file_size:
+                #         chunk = secure_sock.recv(min(1024, file_size - received))
+                #         if not chunk:
+                #             break
+                #         f.write(chunk)
+                #         received += len(chunk)
+                
+                file_data = recv_with_length(secure_sock)
+
+                if not file_data:
                     print("Server reports: file does not exist.")
                     continue
 
-                received = 0
                 with open(full_path, "wb") as f:
-                    while received < file_size:
-                        chunk = secure_sock.recv(min(1024, file_size - received))
-                        if not chunk:
-                            break
-                        f.write(chunk)
-                        received += len(chunk)
+                    f.write(file_data)
                 
                 print(secure_sock.recv(1024).decode())
                 
