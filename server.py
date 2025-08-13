@@ -81,9 +81,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 
                 elif operation == "download":
                     
-                    # conn.sendall(b"\npick a file for download from the following files:\n")
+                    conn.sendall(b"\npick a file for download from the following files:\n")
                     files = os.listdir(folder)
-                    # files_str = "\n".join(files)
                     # conn.sendall(files_str.encode())
                     
                     files_str = "\n".join(files)
