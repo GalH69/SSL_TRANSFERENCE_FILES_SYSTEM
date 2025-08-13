@@ -117,7 +117,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         file_data = f.read()
                     send_with_length(conn, file_data)
                     
-                    conn.sendall(b"\nThe download was successful!\n")
+                    send_with_length(conn, b"The download was successful!\n")
                     
                 elif operation == "exit":
                     print("The client has terminated the connection.")
