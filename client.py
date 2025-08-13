@@ -68,7 +68,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     
                     send_with_length(secure_sock, data)
                     
-                    
                     feedback = secure_sock.recv(1024).decode()
                     print(feedback)
 
